@@ -1,0 +1,23 @@
+node_modules/
+*.pdf
+.DS_Store
+*.stellar.json
+
+# Local Claude Code instructions (per-developer, not committed)
+CLAUDE.local.md
+
+# Local scratch dirs / symlinks for working on external decks
+scratch/
+codex-tmp
+
+# Tauri build artifacts
+src-tauri/target/
+
+# Playwright
+test-results/
+playwright-report/
+
+# Astro site
+site/dist/
+site/node_modules/
+site/.astro/
