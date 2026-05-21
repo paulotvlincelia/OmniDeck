@@ -2,6 +2,20 @@
    Replaces reveal.css + theme/black.css (~54KB → ~120 lines)
    Only engine-level concerns: visibility, transforms, backgrounds, fragments */
 
+/* ===== Page-level sizing — engine needs .reveal to fill viewport so layout() can scale correctly =====
+   Legacy stellardeck shipped this in css/chrome.css; OmniDeck inlines the minimum here. */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: #0a0a0a;
+}
+.reveal {
+  width: 100vw;
+  height: 100vh;
+}
+
 /* ===== Heading sizes (from reveal.js theme/black.css) ===== */
 .reveal h1 { font-size: 2.5em; }
 .reveal h2 { font-size: 1.6em; }
