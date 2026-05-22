@@ -1,23 +1,23 @@
 /**
- * slides2.js — StellarSlides engine
+ * slides2.js — OmniDeckSlides engine
  *
- * Vanilla CSS/JS slide engine for StellarDeck.
- * Exposes window.StellarSlides class + window.Reveal legacy API alias.
+ * Vanilla CSS/JS slide engine for OmniDeck.
+ * Exposes window.OmniDeckSlides class + window.Reveal legacy API alias.
  *
  * Usage (viewer — singleton):
  *   Reveal.initialize({ width: 1280, height: 720, ... });
  *
  * Usage (embed — instance):
- *   const deck = new StellarSlides(containerEl, { width: 800, height: 450 });
+ *   const deck = new OmniDeckSlides(containerEl, { width: 800, height: 450 });
  *   deck.initialize();
  */
 
 (function () {
   'use strict';
 
-  // ─── StellarSlides class ───
+  // ─── OmniDeckSlides class ───
 
-  class StellarSlides {
+  class OmniDeckSlides {
     constructor(container, config = {}) {
       this._container = container;
       this._slidesEl = container.querySelector('.slides') || container.querySelector('#slides');
@@ -70,14 +70,14 @@
         // Create slide number element
         if (this._config.slideNumber) {
           this._slideNumberEl = document.createElement('div');
-          this._slideNumberEl.className = 'sd-slide-number';
+          this._slideNumberEl.className = 'od-slide-number';
           this._container.appendChild(this._slideNumberEl);
         }
 
         // Create progress bar
         if (this._config.progress) {
           this._progressEl = document.createElement('div');
-          this._progressEl.className = 'sd-progress';
+          this._progressEl.className = 'od-progress';
           this._progressEl.innerHTML = '<span></span>';
           this._container.appendChild(this._progressEl);
         }
@@ -269,12 +269,12 @@
       if (existing) existing.remove();
 
       this._bgContainer = document.createElement('div');
-      this._bgContainer.className = 'sd-backgrounds';
+      this._bgContainer.className = 'od-backgrounds';
 
       const sections = this._getSections();
       sections.forEach((section, i) => {
         const bg = document.createElement('div');
-        bg.className = 'sd-bg';
+        bg.className = 'od-bg';
 
         // Read data attributes
         const bgImage = section.getAttribute('data-background-image');
@@ -402,7 +402,7 @@
     }
 
     toggleOverview() {
-      // No-op — StellarDeck uses custom grid
+      // No-op — OmniDeck uses custom grid
     }
 
     getPlugin(name) {
@@ -430,7 +430,7 @@
     emit(event, data) {
       if (this._handlers[event]) {
         this._handlers[event].forEach(fn => {
-          try { fn(data); } catch (e) { console.error(`StellarSlides event "${event}" error:`, e); }
+          try { fn(data); } catch (e) { console.error(`OmniDeckSlides event "${event}" error:`, e); }
         });
       }
     }
@@ -471,14 +471,14 @@
 
   let _defaultInstance = null;
 
-  const stellarSlides = {
+  const omniDeckSlides = {
     initialize(config) {
       const container = document.querySelector('.reveal');
       if (!container) {
-        console.error('StellarSlides: no .reveal container found');
+        console.error('OmniDeckSlides: no .reveal container found');
         return Promise.reject(new Error('No .reveal container'));
       }
-      _defaultInstance = new StellarSlides(container, config);
+      _defaultInstance = new OmniDeckSlides(container, config);
       return _defaultInstance.initialize();
     },
 
@@ -503,7 +503,7 @@
 
   // ─── Exports ───
 
-  window.StellarSlides = StellarSlides;
-  window.Reveal = stellarSlides; // Legacy API alias — keeps existing Reveal.xxx() calls working
+  window.OmniDeckSlides = OmniDeckSlides;
+  window.Reveal = omniDeckSlides; // Legacy API alias — keeps existing Reveal.xxx() calls working
 
 })();

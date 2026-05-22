@@ -1,7 +1,7 @@
 /**
  * constants.js — shared constants across browser app and Node CLI.
  *
- * Exposes `window.StellarConstants` in browser contexts and `module.exports`
+ * Exposes `window.OmniDeckConstants` in browser contexts and `module.exports`
  * for CommonJS (Node). Loaded by viewer.html before other scripts.
  */
 (function () {
@@ -100,6 +100,6 @@
     module.exports = API;
   }
   if (typeof window !== 'undefined') {
-    window.StellarConstants = API;
+    window.OmniDeckConstants = API;
   }
 })();

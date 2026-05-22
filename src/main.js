@@ -28,7 +28,7 @@ function render(markdown) {
   slidesContainer.innerHTML = html;
 
   if (!window.Reveal) {
-    console.error('StellarSlides/Reveal engine not found on window');
+    console.error('OmniDeckSlides/Reveal engine not found on window');
     return 0;
   }
 

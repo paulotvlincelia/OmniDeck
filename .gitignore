@@ -27,3 +27,6 @@ dist-ssr
 backend/venv/
 **/__pycache__/
 *.pyc
+
+# Local-only reference material — kept on disk for future ports, not in public tree
+legacy_backup/

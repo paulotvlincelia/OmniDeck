@@ -1,9 +1,8 @@
-/* slides2.css — StellarSlides engine styles
+/* slides2.css — OmniDeckSlides engine styles
    Replaces reveal.css + theme/black.css (~54KB → ~120 lines)
    Only engine-level concerns: visibility, transforms, backgrounds, fragments */
 
-/* ===== Page-level sizing — engine needs .reveal to fill viewport so layout() can scale correctly =====
-   Legacy stellardeck shipped this in css/chrome.css; OmniDeck inlines the minimum here. */
+/* ===== Page-level sizing — engine needs .reveal to fill viewport so layout() can scale correctly ===== */
 html, body {
   margin: 0;
   padding: 0;
@@ -28,7 +27,7 @@ html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* width, height, transform set by StellarSlides.layout() */
+  /* width, height, transform set by OmniDeckSlides.layout() */
   overflow: visible;
 }
 
@@ -46,14 +45,14 @@ html, body {
 }
 
 /* ===== Backgrounds layer ===== */
-.sd-backgrounds {
+.od-backgrounds {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: 0;
   overflow: hidden;
 }
-.sd-bg {
+.od-bg {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -63,11 +62,11 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
 }
-.sd-bg.present {
+.od-bg.present {
   display: block;
 }
 /* Filtered background: dark overlay via pseudo-element */
-.sd-bg[data-filtered]::after {
+.od-bg[data-filtered]::after {
   content: '';
   position: absolute;
   top: 0; left: 0;
@@ -76,7 +75,7 @@ html, body {
 }
 
 /* ===== Background videos ===== */
-.sd-bg video {
+.od-bg video {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -94,7 +93,7 @@ html, body {
 }
 
 /* ===== Slide number ===== */
-.sd-slide-number {
+.od-slide-number {
   position: absolute;
   bottom: 8px; right: 12px;
   font-size: 12px;
@@ -104,13 +103,13 @@ html, body {
 }
 
 /* ===== Progress bar ===== */
-.sd-progress {
+.od-progress {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 3px;
   z-index: 10;
 }
-.sd-progress span {
+.od-progress span {
   display: block;
   height: 100%;
   background: var(--accent, #0ea5e9);
@@ -119,7 +118,7 @@ html, body {
 }
 
 /* ===== Controls (embed mode) ===== */
-.sd-controls {
+.od-controls {
   position: absolute;
   bottom: 24px;
   right: 16px;
@@ -127,7 +126,7 @@ html, body {
   display: flex;
   gap: 8px;
 }
-.sd-controls button {
+.od-controls button {
   width: 32px; height: 32px;
   border: none;
   border-radius: 50%;
@@ -140,7 +139,7 @@ html, body {
   justify-content: center;
   transition: background 0.2s;
 }
-.sd-controls button:hover {
+.od-controls button:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 

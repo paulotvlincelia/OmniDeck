@@ -12,7 +12,7 @@ This README reflects the **current state** of the codebase, not just the vision.
 | --- | --- | --- |
 | Deckset + Marp markdown parser | ✅ | `src/core/deckset-parser.js` (1500 LOC — directives registry, `#[fit]`, positioned headings, `:::columns/steps/center/math/diagram` blocks, GFM tables, fenced code, speaker notes, frontmatter YAML+Deckset) |
 | Autoflow layout inference | ✅ | `src/core/autoflow.js` (9 rules: title, divider, diagonal, z-pattern, alternating, statement, bare-image-position-variation, phrase-bullets, autoscale; cross-slide anti-monotony state) |
-| Custom slide engine (StellarSlides) | ✅ | `src/core/slides2.js` — navigation, fragments, backgrounds, resize-aware scaling |
+| Custom slide engine (OmniDeckSlides) | ✅ | `src/core/slides2.js` — navigation, fragments, backgrounds, resize-aware scaling |
 | File loading via drag-drop or file picker | ✅ | drop any `.md` on the window, or click **Open** in the floating toolbar |
 | PDF export (in-browser) | ✅ | floating **Export PDF** button or `⌘/Ctrl+E`. Uses html2canvas + pdf-lib via CDN |
 | Keyboard navigation | ✅ | `← → PgUp PgDn` / `Space` (Shift+Space back) / `Home End` |
@@ -33,7 +33,7 @@ The markdown dialect follows [Deckset](https://www.deckset.com/) conventions (`-
 
 ## Architecture (1 paragraph)
 
-A `.md` file goes through `parseDecksetMarkdown()` (optionally pre-processed by `applyAutoflow()` for layout inference), producing concatenated `<section>` HTML. That HTML is injected into `.slides`, and the `StellarSlides` engine handles navigation, fragments, scaling, and background management. PDF export reuses the same DOM via `print-mode.js` (resizes `.reveal` to 1280×720 px) and captures each slide with html2canvas before assembling pages with pdf-lib. The backend (`backend/main.py`) is a stub for future agent/vault integration.
+A `.md` file goes through `parseDecksetMarkdown()` (optionally pre-processed by `applyAutoflow()` for layout inference), producing concatenated `<section>` HTML. That HTML is injected into `.slides`, and the `OmniDeckSlides` engine handles navigation, fragments, scaling, and background management. PDF export reuses the same DOM via `print-mode.js` (resizes `.reveal` to 1280×720 px) and captures each slide with html2canvas before assembling pages with pdf-lib. The backend (`backend/main.py`) is a stub for future agent/vault integration.
 
 ## Roadmap
 
@@ -52,7 +52,6 @@ Open design discussions: [RFC 001](https://github.com/paulotvlincelia/OmniDeck/i
 - **Backend** (planned): Python + FastAPI for local file/vault scanning and LLM orchestration.
 - **PDF**: html2canvas + pdf-lib loaded on-demand from CDN — no npm dependency.
 
-The repo carries a `legacy_backup/` directory with the pre-rename source (engine, demos, CLI export, Tauri wrapper, Playwright tests). It's a reference for future ports, not active code.
 
 ---
 
@@ -68,7 +67,7 @@ Este README descreve o **estado atual** do código, não só a visão.
 | --- | --- | --- |
 | Parser Deckset + Marp | ✅ | `src/core/deckset-parser.js` (1500 LOC — registry de diretivas, `#[fit]`, headings posicionados, blocos `:::columns/steps/center/math/diagram`, tabelas GFM, fenced code, speaker notes, frontmatter YAML+Deckset) |
 | Inferência de layout (Autoflow) | ✅ | `src/core/autoflow.js` (9 regras: title, divider, diagonal, z-pattern, alternating, statement, bare-image-position-variation, phrase-bullets, autoscale; estado cross-slide para anti-monotonia) |
-| Engine de slides (StellarSlides) | ✅ | `src/core/slides2.js` — navegação, fragments, backgrounds, scaling responsivo |
+| Engine de slides (OmniDeckSlides) | ✅ | `src/core/slides2.js` — navegação, fragments, backgrounds, scaling responsivo |
 | Carregar `.md` via drag-drop ou seletor | ✅ | arraste um `.md` na janela ou clique **Open** no toolbar flutuante |
 | Export PDF (in-browser) | ✅ | botão **Export PDF** ou `⌘/Ctrl+E`. Usa html2canvas + pdf-lib via CDN |
 | Navegação por teclado | ✅ | `← → PgUp PgDn` / `Espaço` (Shift+Espaço volta) / `Home End` |
@@ -89,7 +88,7 @@ Dialeto markdown: segue convenções [Deckset](https://www.deckset.com/) — `--
 
 ## Arquitetura (1 parágrafo)
 
-Um `.md` passa por `parseDecksetMarkdown()` (com pré-processamento opcional via `applyAutoflow()`), produzindo HTML concatenado de `<section>`. O HTML é injetado em `.slides`, e o engine `StellarSlides` cuida de navegação, fragments, scaling e backgrounds. O export PDF reusa o mesmo DOM via `print-mode.js` (força `.reveal` para 1280×720 px) e captura cada slide com html2canvas antes de compor páginas com pdf-lib. O backend (`backend/main.py`) é apenas um stub para futura integração com agente/vault.
+Um `.md` passa por `parseDecksetMarkdown()` (com pré-processamento opcional via `applyAutoflow()`), produzindo HTML concatenado de `<section>`. O HTML é injetado em `.slides`, e o engine `OmniDeckSlides` cuida de navegação, fragments, scaling e backgrounds. O export PDF reusa o mesmo DOM via `print-mode.js` (força `.reveal` para 1280×720 px) e captura cada slide com html2canvas antes de compor páginas com pdf-lib. O backend (`backend/main.py`) é apenas um stub para futura integração com agente/vault.
 
 ## Roadmap
 
@@ -108,4 +107,3 @@ Discussões abertas: [RFC 001](https://github.com/paulotvlincelia/OmniDeck/issue
 - **Backend** (planejado): Python + FastAPI para scanning local de arquivos/vaults e orquestração de LLM.
 - **PDF**: html2canvas + pdf-lib carregados sob demanda via CDN — sem dependência npm.
 
-O repositório carrega uma pasta `legacy_backup/` com o código pré-rename (engine, demos, CLI export, wrapper Tauri, testes Playwright). É referência para futuros ports, não código ativo.

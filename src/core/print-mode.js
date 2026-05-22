@@ -1,7 +1,7 @@
 /**
  * print-mode.js — enter/exit "print mode" for slide capture
  *
- * Ported from legacy stellardeck. The ALWAYS_HIDE / FULL_HIDE element IDs
+ * Ported from legacy source. The ALWAYS_HIDE / FULL_HIDE element IDs
  * refer to a chrome (toolbar/sidebar/status-bar) that OmniDeck's minimal
  * shell doesn't have; those branches simply no-op via getElementById null
  * checks. The .reveal sizing override is what matters for PDF capture.
@@ -64,5 +64,5 @@
     };
   }
 
-  window.StellarPrintMode = { enter };
+  window.OmniDeckPrintMode = { enter };
 })();

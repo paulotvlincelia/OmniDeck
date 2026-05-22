@@ -5,13 +5,13 @@
  * Shows a small progress overlay while exporting.
  *
  * Requires constants.js + print-mode.js to be loaded first (they attach to
- * window.StellarConstants / window.StellarPrintMode).
+ * window.OmniDeckConstants / window.OmniDeckPrintMode).
  */
 
-const HTML2CANVAS_CDN = window.StellarConstants.CDN.HTML2CANVAS;
-const PDFLIB_CDN = window.StellarConstants.CDN.PDFLIB;
-const SLIDE_W = window.StellarConstants.SLIDE.WIDTH;
-const SLIDE_H = window.StellarConstants.SLIDE.HEIGHT;
+const HTML2CANVAS_CDN = window.OmniDeckConstants.CDN.HTML2CANVAS;
+const PDFLIB_CDN = window.OmniDeckConstants.CDN.PDFLIB;
+const SLIDE_W = window.OmniDeckConstants.SLIDE.WIDTH;
+const SLIDE_H = window.OmniDeckConstants.SLIDE.HEIGHT;
 
 async function loadScript(url) {
   if (document.querySelector(`script[src="${url}"]`)) return;
@@ -79,7 +79,7 @@ function showOverlay() {
 }
 
 function enterPrintMode() {
-  return window.StellarPrintMode.enter({ width: SLIDE_W, height: SLIDE_H, full: true });
+  return window.OmniDeckPrintMode.enter({ width: SLIDE_W, height: SLIDE_H, full: true });
 }
 
 export async function exportPDF(options = {}) {

@@ -1,8 +1,8 @@
 /**
- * deckset-parser.js — Deckset Markdown → StellarSlides HTML converter
+ * deckset-parser.js — Deckset Markdown → OmniDeckSlides HTML converter
  *
  * Converts Deckset-flavored markdown into <section> HTML rendered by
- * StellarSlides (format also compatible with Reveal.js).
+ * OmniDeckSlides (format also compatible with Reveal.js).
  * Handles image modifiers, [fit] headings, speaker notes, directives,
  * split layouts, background images, video embeds, and more.
  *
@@ -113,7 +113,7 @@ const DIRECTIVE_REGISTRY = [
 
   // ── Slide-level: CSS custom properties (style attribute) ──
   { name: 'heading-align',    scope: 'slide',
-    apply: (val, ctx) => ctx.styles.push(`--sd-heading-align: ${val}`) },
+    apply: (val, ctx) => ctx.styles.push(`--od-heading-align: ${val}`) },
   { name: 'header',           scope: 'slide',
     apply: (val, ctx) => ctx.styles.push(`--r-heading-color: ${val}`) },
   { name: 'header-strong',    scope: 'slide',
@@ -123,8 +123,8 @@ const DIRECTIVE_REGISTRY = [
   { name: 'accent-bold',      scope: 'slide',
     apply: (val, ctx) => {
       if (val === 'false') {
-        ctx.styles.push('--sd-accent-bold-color: inherit');
-        ctx.styles.push('--sd-accent-bullets-color: inherit');
+        ctx.styles.push('--od-accent-bold-color: inherit');
+        ctx.styles.push('--od-accent-bullets-color: inherit');
       }
     } },
   { name: 'alternating-colors', scope: 'slide' }, // consumed by parser (alternating class)
@@ -418,7 +418,7 @@ function sectionAttrsFromDirectives(directives) {
     }
   }
 
-  let result = ' class="sd-slide"';
+  let result = ' class="od-slide"';
   if (ctx.attrs.length > 0) result += ' ' + ctx.attrs.join(' ');
   if (ctx.styles.length > 0) result += ` style="${ctx.styles.join('; ')}"`;
   return result;

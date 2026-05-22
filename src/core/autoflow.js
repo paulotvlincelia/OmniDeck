@@ -1,5 +1,5 @@
 /**
- * autoflow.js — Convention-over-configuration layout inference for StellarDeck
+ * autoflow.js — Convention-over-configuration layout inference for OmniDeck
  *
  * Analyzes raw slide markdown and injects directives the parser already handles.
  * Runs BEFORE the parser pipeline.
